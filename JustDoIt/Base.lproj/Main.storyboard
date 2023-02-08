@@ -18,14 +18,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="task" textLabel="8gY-gu-BGw" style="IBUITableViewCellStyleDefault" id="qFO-Z7-BXF">
-                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                <rect key="frame" x="0.0" y="50" width="393" height="54.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qFO-Z7-BXF" id="0AN-zM-1lc">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="54.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8gY-gu-BGw">
-                                            <rect key="frame" x="20" y="0.0" width="353" height="43.666667938232422"/>
+                                            <rect key="frame" x="20" y="0.0" width="353" height="54.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -40,31 +40,46 @@
                             <outlet property="delegate" destination="9co-bI-87k" id="b1G-nA-5ag"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="8dz-o3-te1"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="8dz-o3-te1">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="FTh-KP-sUl">
+                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <segue destination="TpW-xV-wye" kind="presentation" identifier="newTask" id="dmi-hc-s4c"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="add" id="Qc7-Xx-8ad">
+                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KZQ-wN-eZw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-144" y="-679"/>
         </scene>
-        <!--View Controller-->
+        <!--New Task View Controller-->
         <scene sceneID="X0E-NY-b5w">
             <objects>
-                <viewController id="TpW-xV-wye" sceneMemberID="viewController">
+                <viewController id="TpW-xV-wye" customClass="NewTaskViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1fy-Rb-cv7">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OWo-da-LTF">
-                                <rect key="frame" x="16" y="79.000000000000014" width="361" height="156.33333333333337"/>
+                                <rect key="frame" x="16" y="79" width="361" height="313.33333333333331"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xbh-A0-FvA">
-                                        <rect key="frame" x="0.0" y="0.0" width="89.666666666666671" height="20.333333333333332"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="89.666666666666671" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="VTO-NB-9VU"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="New task" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Xor-gq-8rf">
-                                        <rect key="frame" x="0.0" y="28.333333333333329" width="240" height="127.99999999999999"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="245" text="New task" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Xor-gq-8rf">
+                                        <rect key="frame" x="0.0" y="33" width="240" height="280.33333333333331"/>
                                         <color key="backgroundColor" red="0.79607844350000001" green="0.52941179279999995" blue="0.97254908080000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -76,14 +91,67 @@
                                     </textView>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BlV-t3-ggt">
+                                <rect key="frame" x="16" y="711" width="361" height="72"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fXx-Zg-AEW">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="32"/>
+                                        <segments>
+                                            <segment title="!"/>
+                                            <segment title="!!"/>
+                                            <segment title="!!!"/>
+                                        </segments>
+                                        <color key="selectedSegmentTintColor" systemColor="systemRedColor"/>
+                                    </segmentedControl>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wFs-zs-OQ0">
+                                        <rect key="frame" x="0.0" y="39" width="361" height="33"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Uh-Ku-SAA">
+                                                <rect key="frame" x="0.0" y="0.0" width="70" height="33"/>
+                                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="784-ZC-sjZ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Cancel">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="245" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oj3-0p-hSi">
+                                                <rect key="frame" x="78" y="0.0" width="283" height="33"/>
+                                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Done">
+                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Wng-Oi-FBU"/>
                         <color key="backgroundColor" red="0.79607844350000001" green="0.52941179279999995" blue="0.97254908080000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="Wng-Oi-FBU" firstAttribute="trailing" secondItem="OWo-da-LTF" secondAttribute="trailing" constant="16" id="KAH-UE-ZZp"/>
-                            <constraint firstItem="OWo-da-LTF" firstAttribute="height" secondItem="1fy-Rb-cv7" secondAttribute="height" multiplier="0.18349" id="LYa-7u-hD0"/>
+                            <constraint firstItem="BlV-t3-ggt" firstAttribute="leading" secondItem="Wng-Oi-FBU" secondAttribute="leading" constant="16" id="LA7-El-4hc"/>
+                            <constraint firstItem="OWo-da-LTF" firstAttribute="height" secondItem="1fy-Rb-cv7" secondAttribute="height" multiplier="0.4" id="LYa-7u-hD0"/>
+                            <constraint firstItem="Wng-Oi-FBU" firstAttribute="bottom" secondItem="BlV-t3-ggt" secondAttribute="bottom" id="c5I-WV-iYz"/>
                             <constraint firstItem="OWo-da-LTF" firstAttribute="leading" secondItem="Wng-Oi-FBU" secondAttribute="leading" constant="16" id="e2l-AO-9zp"/>
                             <constraint firstItem="OWo-da-LTF" firstAttribute="top" secondItem="Wng-Oi-FBU" secondAttribute="top" constant="20" id="gpe-1y-NKd"/>
+                            <constraint firstItem="Wng-Oi-FBU" firstAttribute="trailing" secondItem="BlV-t3-ggt" secondAttribute="trailing" constant="16" id="h9S-WI-NoD"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -111,6 +179,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
