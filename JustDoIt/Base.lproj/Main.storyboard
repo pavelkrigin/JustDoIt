@@ -61,7 +61,7 @@
         <!--New Task View Controller-->
         <scene sceneID="X0E-NY-b5w">
             <objects>
-                <viewController id="TpW-xV-wye" customClass="NewTaskViewController" sceneMemberID="viewController">
+                <viewController id="TpW-xV-wye" customClass="NewTaskViewController" customModule="JustDoIt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1fy-Rb-cv7">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -122,6 +122,9 @@
                                                         <integer key="value" value="8"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="cancelButtonPressed:" destination="TpW-xV-wye" eventType="touchUpInside" id="AYB-Ew-JRV"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="245" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oj3-0p-hSi">
                                                 <rect key="frame" x="78" y="0.0" width="283" height="33"/>
@@ -136,6 +139,9 @@
                                                         <integer key="value" value="8"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="doneButtonPresssed:" destination="TpW-xV-wye" eventType="touchUpInside" id="bNp-6V-cZW"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -154,6 +160,12 @@
                             <constraint firstItem="Wng-Oi-FBU" firstAttribute="trailing" secondItem="BlV-t3-ggt" secondAttribute="trailing" constant="16" id="h9S-WI-NoD"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="bottomConstraint" destination="c5I-WV-iYz" id="0Yd-vZ-6bR"/>
+                        <outlet property="doneButton" destination="oj3-0p-hSi" id="7Bb-OC-anr"/>
+                        <outlet property="prioritySegmentedControl" destination="fXx-Zg-AEW" id="694-Jz-BUd"/>
+                        <outlet property="taskTextView" destination="Xor-gq-8rf" id="KET-GX-LjH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pV2-wB-vKX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
