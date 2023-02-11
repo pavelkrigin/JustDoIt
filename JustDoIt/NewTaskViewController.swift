@@ -8,6 +8,17 @@
 import UIKit
 
 final class NewTaskViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        doneButton.isHidden = true
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil)
+    }
  
     @IBOutlet var taskTextView: UITextView!
     
@@ -17,11 +28,22 @@ final class NewTaskViewController: UIViewController {
     
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
     
-    @IBAction func doneButtonPresssed(_ sender: Any) {
+    @IBAction func doneButtonPresssed() {
+        dismiss(animated: true)
     }
     
-    @IBAction func cancelButtonPressed(_ sender: Any) {
+    @IBAction func cancelButtonPressed() {
+        dismiss(animated: true)
     }
+    
+    
 }
 
+// MARK: - Work with keyboard
+
+extension NewTaskViewController {
+    @objc private func keyboardWillShow(with nitification: Notification) {
+        
+    }
+}
 
