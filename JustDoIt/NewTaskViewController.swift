@@ -18,6 +18,8 @@ final class NewTaskViewController: UIViewController {
             selector: #selector(keyboardWillShow),
             name: UIResponder.keyboardWillShowNotification,
             object: nil)
+        
+        setupTextView()
     }
  
     @IBOutlet var taskTextView: UITextView!
@@ -36,7 +38,10 @@ final class NewTaskViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    
+    private func setupTextView() {
+        taskTextView.becomeFirstResponder()
+        taskTextView.textColor = .white
+    }
 }
 
 // MARK: - Work with keyboard
