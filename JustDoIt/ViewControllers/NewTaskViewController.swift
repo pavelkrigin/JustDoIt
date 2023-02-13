@@ -65,3 +65,17 @@ extension NewTaskViewController {
     }
 }
 
+// MARK: - Text View Delegate
+
+extension NewTaskViewController: UITextViewDelegate { // Для работы с UITextView подписываем класс под протокол UITextViewDelegate и реализуем метод tetxViewDidChangeSelection, который вызывается при взаимодействии с текстовым полем
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        if doneButton.isHidden { // Все действия в этом методе мы выполняем только при добавлении новой задачи. Кнопка Done для новых задач по умолчанию скрыта
+            textView.text.removeAll() // Тапая по текстовому представлению, автоматически удаляем заранее прописанный плейсхолдер.
+            doneButton.isHidden = false // Как только начинается процесс редактирования текста, появляется кнопка Done
+            UIView.animate(withDuration: 0.3) { // анимация появления кнопки
+                self.view.layoutIfNeeded() // Запускаем процесс перестановки элементов интерфейса
+            }
+            
+        }
+    }
+}
