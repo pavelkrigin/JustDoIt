@@ -58,16 +58,64 @@
 		CA68B0CA2992A44700202E36 /* JustDoIt */ = {
 			isa = PBXGroup;
 			children = (
-				CA68B0CB2992A44700202E36 /* AppDelegate.swift */,
-				CA68B0CD2992A44700202E36 /* SceneDelegate.swift */,
-				CA68B0CF2992A44700202E36 /* TaskListViewController.swift */,
-				CA83AD962993BF67006617D2 /* NewTaskViewController.swift */,
-				CA68B0D12992A44700202E36 /* Main.storyboard */,
-				CA68B0D42992A44A00202E36 /* Assets.xcassets */,
-				CA68B0D62992A44A00202E36 /* LaunchScreen.storyboard */,
+				CAFDF66C299A9A8500D655B8 /* Services */,
+				CAFDF66B299A9A7800D655B8 /* Models */,
+				CAFDF66A299A99FD00D655B8 /* StoryBoards */,
+				CAFDF669299A99D700D655B8 /* Resourses */,
+				CAFDF668299A996E00D655B8 /* SupportingFiles */,
+				CAFDF667299A993A00D655B8 /* ViewControllers */,
 				CA68B0D92992A44A00202E36 /* Info.plist */,
 			);
 			path = JustDoIt;
+			sourceTree = "<group>";
+		};
+		CAFDF667299A993A00D655B8 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CA68B0CF2992A44700202E36 /* TaskListViewController.swift */,
+				CA83AD962993BF67006617D2 /* NewTaskViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CAFDF668299A996E00D655B8 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				CA68B0CB2992A44700202E36 /* AppDelegate.swift */,
+				CA68B0CD2992A44700202E36 /* SceneDelegate.swift */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		CAFDF669299A99D700D655B8 /* Resourses */ = {
+			isa = PBXGroup;
+			children = (
+				CA68B0D42992A44A00202E36 /* Assets.xcassets */,
+			);
+			path = Resourses;
+			sourceTree = "<group>";
+		};
+		CAFDF66A299A99FD00D655B8 /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				CA68B0D12992A44700202E36 /* Main.storyboard */,
+				CA68B0D62992A44A00202E36 /* LaunchScreen.storyboard */,
+			);
+			path = StoryBoards;
+			sourceTree = "<group>";
+		};
+		CAFDF66B299A9A7800D655B8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CAFDF66C299A9A8500D655B8 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
