@@ -49,6 +49,19 @@ final class NewTaskViewController: UIViewController {
 extension NewTaskViewController {
     @objc private func keyboardWillShow(with nitification: Notification) {
         
+        let key = UIResponder.keyboardFrameEndUserInfoKey // Объявляется константа key которая содержит UIResponder.keyboardFrameEndUserInfoKey. Свойство keyboardFrameEndUserInfoKey содержит название ключа для использования в словаре userInfo, который передается с уведомлением о появлении или изменении размера клавиатуры. Этот ключ имеет значение типа CGRect, который определяет размер и положение клавиатуры на экране в момент ее отображения или изменения размера.
+        
+        guard let keyboardFrame = nitification.userInfo?[key] as? CGRect else { return } // Используя полученный ключ, извлекаем размер клавиатуры из словаря и приводим его к типу CGRect
+//        guard nitification.userInfo?[key] is CGRect else { return }
+        
+        bottomConstraint.constant = keyboardFrame.height // Устанавливаем значение для нижнего констрейнта равное высоте клавиатуры
+
+        
+        UIView.animate(withDuration: 0.3) { // Что бы процесс смещения элементов интерфейса происходил анимированно, используем метод animate(withDuration:)
+
+            self.view.layoutIfNeeded() // Метод layoutIfNeeded() запускает процесс смещения элементов в соответствии с новыми значениями нижнего констрейнта.
+
+        }
     }
 }
 
