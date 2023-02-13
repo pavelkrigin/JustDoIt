@@ -14,6 +14,7 @@
 		CA68B0D52992A44A00202E36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA68B0D42992A44A00202E36 /* Assets.xcassets */; };
 		CA68B0D82992A44A00202E36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA68B0D62992A44A00202E36 /* LaunchScreen.storyboard */; };
 		CA83AD972993BF67006617D2 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA83AD962993BF67006617D2 /* NewTaskViewController.swift */; };
+		CAFDF670299AA9FD00D655B8 /* JustDoIt.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CAFDF66E299AA9FC00D655B8 /* JustDoIt.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		CA68B0D72992A44A00202E36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA68B0D92992A44A00202E36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA83AD962993BF67006617D2 /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
+		CAFDF66F299AA9FD00D655B8 /* JustDoIt.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JustDoIt.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 		CAFDF66B299A9A7800D655B8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CAFDF66E299AA9FC00D655B8 /* JustDoIt.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 			files = (
 				CA68B0D02992A44700202E36 /* TaskListViewController.swift in Sources */,
 				CA68B0CC2992A44700202E36 /* AppDelegate.swift in Sources */,
+				CAFDF670299AA9FD00D655B8 /* JustDoIt.xcdatamodeld in Sources */,
 				CA83AD972993BF67006617D2 /* NewTaskViewController.swift in Sources */,
 				CA68B0CE2992A44700202E36 /* SceneDelegate.swift in Sources */,
 			);
@@ -418,6 +422,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CAFDF66E299AA9FC00D655B8 /* JustDoIt.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CAFDF66F299AA9FD00D655B8 /* JustDoIt.xcdatamodel */,
+			);
+			currentVersion = CAFDF66F299AA9FD00D655B8 /* JustDoIt.xcdatamodel */;
+			path = JustDoIt.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CA68B0C02992A44700202E36 /* Project object */;
 }
