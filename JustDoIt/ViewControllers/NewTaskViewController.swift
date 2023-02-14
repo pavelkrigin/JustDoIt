@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewTaskViewController: UIViewController {
+final class NewTaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
