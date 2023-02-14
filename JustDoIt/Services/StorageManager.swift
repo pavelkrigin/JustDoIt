@@ -46,6 +46,13 @@ final class StorageManager {
         
     }
     
+    func saveTask(withTitle title: String, andPriority priority: Int16) { // Реализуем метод для создания и сохранения задачи в базе данных
+        let task = Task(context: viewContext) // создаём экз сущности Task
+        task.title = title
+        task.priority = priority
+        task.date = Date()
+        saveContext() // вызываем метод для внесения изменений в базу
+    }
     
     // MARK: - Core Data Saving support
     func saveContext() { // реализация метода для сохранения контекста
