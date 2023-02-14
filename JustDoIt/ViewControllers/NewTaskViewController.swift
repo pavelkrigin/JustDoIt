@@ -30,14 +30,14 @@ final class NewTaskViewController: UIViewController {
     
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
     
-    @IBAction func doneButtonPresssed() {
-        dismiss(animated: true)
-    }
-    
-    @IBAction func cancelButtonPressed() { // сохранение задачи в базе данных
+    @IBAction func doneButtonPresssed() {  // сохранение задачи в базе данных
         guard let title = taskTextView.text, !title.isEmpty else { return } // извлечение опционального значения text
         let prioirty = Int16(prioritySegmentedControl.selectedSegmentIndex) // задаем приоритет на основе выбранного сегмента
         StorageManager.shared.saveTask(withTitle: title, andPriority: prioirty) // вызываем метод и передаем в его параметры заголовок для задачи и выставленный приоритет
+        dismiss(animated: true)
+    }
+    
+    @IBAction func cancelButtonPressed() { 
         dismiss(animated: true)
     }
     
