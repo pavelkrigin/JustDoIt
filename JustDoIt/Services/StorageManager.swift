@@ -11,7 +11,7 @@ final class StorageManager {
     
     static let shared = StorageManager()
     
-    // MARK: - Core Data Stack
+    // MARK: - Core Data Stack entry point
     
     private let persistentContainer: NSPersistentContainer = {
         let container  = NSPersistentContainer(name: "Just Do It")
@@ -28,4 +28,18 @@ final class StorageManager {
     }
     
     private init() {}
+    
+    
+    // MARK: - Core Data Saving support
+    func saveContext() { // реализация метода для сохранения контекста
+        if viewContext.hasChanges {
+            do {
+                try.viewContext.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
 }
+
