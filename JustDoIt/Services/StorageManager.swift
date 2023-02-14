@@ -54,6 +54,11 @@ final class StorageManager {
         saveContext() // вызываем метод для внесения изменений в базу
     }
     
+    func delete(task: Task) {
+        viewContext.delete(task)
+        saveContext()
+    }
+    
     // MARK: - Core Data Saving support
     func saveContext() { // реализация метода для сохранения контекста
         if viewContext.hasChanges {
