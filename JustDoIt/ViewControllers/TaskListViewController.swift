@@ -8,6 +8,8 @@
 import UIKit
 
 final class TaskListViewController: UITableViewController {
+    
+    private var fetchedResultsController = StorageManager.shared.getFetchedResultsController(entityName: "Task", keyForSort: "date")
 
     override func viewDidLoad() {
         super.viewDidLoad()
