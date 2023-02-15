@@ -25,6 +25,13 @@ extension TaskListViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         fetchedResultsController.fetchedObjects?.count ?? 0
     }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        guard fetchedResultsController.object(at: indexPath) is Task else { return cell } // Вызов метода fetchedResultsController.object(at:) возвращает объект с типом NSManagedObject из массива fetchedResultsController.fetchedObjects, который мы затем приводим к типу Task с помощью оператора as?.
+        
+        return cell
+    }
 }
 
 // MARK: - Private Methods
