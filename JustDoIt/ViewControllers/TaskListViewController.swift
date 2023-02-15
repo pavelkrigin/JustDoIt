@@ -13,10 +13,18 @@ final class TaskListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchTasks()
         
     }
     
 
+}
+
+// MARK: - Table View Data Source
+extension TaskListViewController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        fetchedResultsController.fetchedObjects?.count ?? 0
+    }
 }
 
 // MARK: - Private Methods
@@ -49,5 +57,13 @@ extension TaskListViewController {
         navigationController?.navigationBar.standardAppearance = navBarAppearance // применяем заданные аттрибуты навигационной панели для большого заголовка
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance // применяем теже аттрибуты для маленького заголовка
                         
+    }
+    
+    private func fetchTasks() {
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            print(error)
+        }
     }
 }
