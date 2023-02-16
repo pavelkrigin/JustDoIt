@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 final class TaskListViewController: UITableViewController {
     
@@ -33,6 +34,13 @@ extension TaskListViewController {
         cell.contentConfiguration = setContentForCell(with: task)
         
         return cell
+    }
+}
+
+// MARK: - NSFetchResultsControllerDelegate
+extension TaskListViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates() // Метод вызывается перед тем, как NSFetchedResultsController начнет обновлять данные. Он предназначен для того, чтобы приложение могло начать обновлять пользовательский интерфейс до того, как изменения будут произведены. Что бы подготовить табличное представление к обновлению мы вызываем у tableView метод beginUpdates()
     }
 }
 
