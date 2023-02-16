@@ -73,4 +73,17 @@ extension TaskListViewController {
             print(error)
         }
     }
+    private func setContentForCell(with task: Task?) -> UIListContentConfiguration {
+        var content = UIListContentConfiguration.cell()
+        
+        content.textProperties.font = UIFont(
+        name: "Avenir Next Medium", size: 23
+        ) ?? UIFont.systemFont(ofSize: 23)
+        
+        content.textProperties.color = .darkGray
+        content.text = task?.title
+        
+        return content
+    }
+    
 }
