@@ -15,6 +15,7 @@ final class TaskListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchTasks()
+        fetchedResultsController.delegate = self
         
     }
     
@@ -39,8 +40,23 @@ extension TaskListViewController {
 
 // MARK: - NSFetchResultsControllerDelegate
 extension TaskListViewController: NSFetchedResultsControllerDelegate {
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.beginUpdates() // Метод вызывается перед тем, как NSFetchedResultsController начнет обновлять данные. Он предназначен для того, чтобы приложение могло начать обновлять пользовательский интерфейс до того, как изменения будут произведены. Что бы подготовить табличное представление к обновлению мы вызываем у tableView метод beginUpdates()
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) { // Метод вызывается перед тем, как NSFetchedResultsController начнет обновлять данные. Он предназначен для того, чтобы приложение могло начать обновлять пользовательский интерфейс до того, как изменения будут произведены. Что бы подготовить табличное представление к обновлению мы вызываем у tableView метод beginUpdates().
+        tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {  // Метод вызывается каждый раз, когда NSFetchedResultsController обнаруживает изменения в данных. Этот метод предоставляет информацию о типе изменения (например, вставка, удаление, изменение или перемещение), а также индексы для объектов, которые были изменены. Метод используется для того, чтобы вызвать соответствующие методы UITableView, такие как insertRows(at:with:), deleteRows(at:with:), reloadRows(at:with:) или moveRow(at:to:), чтобы обновить таблицу в соответствии с изменениями данных. В данном случае мы пока обрабатываем кейсы для добавления и удаления задачи.
+        switch type {
+        case .insert:
+            guard let newIndexPath = newIndexPath else { return }
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        case .delete:
+            guard let indexPath = indexPath else { return }
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        default: break
+        }
+    }
+
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) { // 3Метод вызывается один раз после того, как все изменения, которые были обнаружены NSFetchedResultsController, были обработаны методом controller(_:didChange:at:for:newIndexPath:). Этот метод используется, чтобы завершить обновление интерфейса пользователя и произвести любые другие необходимые действия после обновления данных. Чтобы завершить анимацию и обновить табличное представление мы вызываем у tableView метод endUpdates()        tableView.endUpdates()
     }
 }
 
