@@ -38,6 +38,22 @@ extension TaskListViewController {
     }
 }
 
+// MARK: - TableView Delegate
+extension TaskListViewController {
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, _ in // 1
+            if let task = self.fetchedResultsController.object(at: indexPath) as? Task { // 2
+                StorageManager.shared.delete(task: task) // 3
+            }
+        }
+        
+        deleteAction.image = UIImage(systemName: "trash") // 4
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction]) // 5
+    }
+}
+
+
 // MARK: - NSFetchResultsControllerDelegate
 extension TaskListViewController: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) { // Метод вызывается перед тем, как NSFetchedResultsController начнет обновлять данные. Он предназначен для того, чтобы приложение могло начать обновлять пользовательский интерфейс до того, как изменения будут произведены. Что бы подготовить табличное представление к обновлению мы вызываем у tableView метод beginUpdates().
