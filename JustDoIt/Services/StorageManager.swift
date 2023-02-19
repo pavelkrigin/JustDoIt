@@ -59,6 +59,12 @@ final class StorageManager {
         saveContext()
     }
     
+    func edit(task: Task, with newTitle: String, and priority: Int16) { // реализация возможности редактирования задачи
+        task.title = newTitle
+        task.priority = priority
+        saveContext()
+    }
+    
     // MARK: - Core Data Saving support
     func saveContext() { // реализация метода для сохранения контекста
         if viewContext.hasChanges {
