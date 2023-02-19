@@ -8,6 +8,14 @@
 import UIKit
 
 final class NewTaskViewController: UIViewController {
+            
+    // MARK: - IBOutlets
+    @IBOutlet var taskTextView: UITextView!
+    @IBOutlet var prioritySegmentedControl: UISegmentedControl!
+    @IBOutlet var doneButton: UIButton!
+    @IBOutlet var bottomConstraint: NSLayoutConstraint!
+    
+    var task: Task?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,23 +29,20 @@ final class NewTaskViewController: UIViewController {
         
         setupTextView()
     }
- 
-    @IBOutlet var taskTextView: UITextView!
     
-    @IBOutlet var prioritySegmentedControl: UISegmentedControl!
-    
-    @IBOutlet var doneButton: UIButton!
-    
-    @IBOutlet var bottomConstraint: NSLayoutConstraint!
-    
+    //MARK: - IBActions
     @IBAction func doneButtonPresssed() {  // сохранение задачи в базе данных
         guard let title = taskTextView.text, !title.isEmpty else { return } // извлечение опционального значения text
         let prioirty = Int16(prioritySegmentedControl.selectedSegmentIndex) // задаем приоритет на основе выбранного сегмента
-        StorageManager.shared.saveTask(withTitle: title, andPriority: prioirty) // вызываем метод и передаем в его параметры заголовок для задачи и выставленный приоритет
+        if let task = task {
+            StorageManager.shared.edit(task: task, with: title, and: prioirty)
+        } else {
+            StorageManager.shared.saveTask(withTitle: title, andPriority: prioirty) // вызываем метод и передаем в его параметры заголовок для задачи и выставленный приоритет
+        }
         dismiss(animated: true)
     }
     
-    @IBAction func cancelButtonPressed() { 
+    @IBAction func cancelButtonPressed() {
         dismiss(animated: true)
     }
     
@@ -55,15 +60,15 @@ extension NewTaskViewController {
         let key = UIResponder.keyboardFrameEndUserInfoKey // Объявляется константа key которая содержит UIResponder.keyboardFrameEndUserInfoKey. Свойство keyboardFrameEndUserInfoKey содержит название ключа для использования в словаре userInfo, который передается с уведомлением о появлении или изменении размера клавиатуры. Этот ключ имеет значение типа CGRect, который определяет размер и положение клавиатуры на экране в момент ее отображения или изменения размера.
         
         guard let keyboardFrame = nitification.userInfo?[key] as? CGRect else { return } // Используя полученный ключ, извлекаем размер клавиатуры из словаря и приводим его к типу CGRect
-//        guard nitification.userInfo?[key] is CGRect else { return }
+        //        guard nitification.userInfo?[key] is CGRect else { return }
         
         bottomConstraint.constant = keyboardFrame.height // Устанавливаем значение для нижнего констрейнта равное высоте клавиатуры
-
+        
         
         UIView.animate(withDuration: 0.3) { // Что бы процесс смещения элементов интерфейса происходил анимированно, используем метод animate(withDuration:)
-
+            
             self.view.layoutIfNeeded() // Метод layoutIfNeeded() запускает процесс смещения элементов в соответствии с новыми значениями нижнего констрейнта.
-
+            
         }
     }
 }
