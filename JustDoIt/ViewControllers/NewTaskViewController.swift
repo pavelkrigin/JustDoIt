@@ -31,7 +31,7 @@ final class NewTaskViewController: UIViewController {
     }
     
     //MARK: - IBActions
-    @IBAction func doneButtonPresssed() {  // сохранение задачи в базе данных
+    @IBAction func doneButtonPressed() {  // сохранение задачи в базе данных
         guard let title = taskTextView.text, !title.isEmpty else { return } // извлечение опционального значения text
         let prioirty = Int16(prioritySegmentedControl.selectedSegmentIndex) // задаем приоритет на основе выбранного сегмента
         if let task = task {
@@ -48,7 +48,13 @@ final class NewTaskViewController: UIViewController {
     
     private func setupTextView() {
         taskTextView.becomeFirstResponder()
-        taskTextView.textColor = .white
+        if let task = task {
+            taskTextView.text = task.title
+            prioritySegmentedControl.selectedSegmentIndex = Int(task.priority)
+        } else {
+            doneButton.isHidden = true
+        }
+//        taskTextView.textColor = .white
     }
 }
 
