@@ -10,13 +10,21 @@ import CoreData
 
 final class TaskListViewController: UITableViewController {
     
-    private var fetchedResultsController = StorageManager.shared.getFetchedResultsController(entityName: "Task", keyForSort: "date")
+    private var fetchedResultsController = StorageManager.shared.getFetchedResultsController(
+        entityName: "Task",
+        keyForSort: "date")
 
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchTasks()
         fetchedResultsController.delegate = self
         
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editTask" {
+            guard let newTaskVC = segue.destination as? NewTaskViewController else { return }
+            newTaskVC.task = sender as? Task
+        }
     }
     
 
