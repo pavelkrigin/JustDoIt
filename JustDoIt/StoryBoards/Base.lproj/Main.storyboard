@@ -34,7 +34,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="TpW-xV-wye" kind="presentation" id="A9a-k5-ibl"/>
+                                    <segue destination="TpW-xV-wye" kind="presentation" identifier="editTask" id="A9a-k5-ibl"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

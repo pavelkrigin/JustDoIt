@@ -51,6 +51,12 @@ extension TaskListViewController {
         
         return UISwipeActionsConfiguration(actions: [deleteAction]) // 5
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { //Метод вызывается каждый раз, когда пользователь тапает по строке табличного представления
+        tableView.deselectRow(at: indexPath, animated: true) //Снимаем выделение со строки, после того как она будет выделена
+        let task = fetchedResultsController.object(at: indexPath) as? Task //Извлекаем экземпляр выбранной задачи из массива со списком всех задач по индексу выбранной строки
+        performSegue(withIdentifier: "editTask", sender: task) //Вызываем метод performSegue, что бы инициировать переход по сегвею с идентификатором editTask и передаем в параметр sender выбранную задачу.
+    }
 }
 
 
