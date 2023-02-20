@@ -21,9 +21,9 @@ final class TaskListViewController: UITableViewController {
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "editTask" {
-            guard let newTaskVC = segue.destination as? NewTaskViewController else { return }
-            newTaskVC.task = sender as? Task
+        if segue.identifier == "editTask" { //Код будет выполнен только в том случае, если переход осуществляется по сегвею editTask
+            guard let newTaskVC = segue.destination as? NewTaskViewController else { return } //Создаем экземпляр класса NewTaskViewController
+            newTaskVC.task = sender as? Task // Инициализируем свойство task текущей задачей, которую мы извлекаем из параметра sender. В этом параметре хранится тот объект, который мы передали в метод performSegue в тот же самый параметр.
         }
     }
     
@@ -79,6 +79,9 @@ extension TaskListViewController: NSFetchedResultsControllerDelegate {
         case .insert:
             guard let newIndexPath = newIndexPath else { return }
             tableView.insertRows(at: [newIndexPath], with: .automatic)
+        case .update:
+            guard let indexPath = indexPath else { return }
+            tableView.reloadRows(at: [indexPath], with: .automatic)
         case .delete:
             guard let indexPath = indexPath else { return }
             tableView.deleteRows(at: [indexPath], with: .automatic)
