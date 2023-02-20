@@ -19,7 +19,7 @@ final class NewTaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        doneButton.isHidden = true
+        
         
         NotificationCenter.default.addObserver(
             self,
