@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class TaskListViewController: UITableViewController {
+final class TaskListViewController: UITableViewController {
     
     private var fetchedResultsController = StorageManager.shared.fetchedResultsController(
         entityName: "Task",
