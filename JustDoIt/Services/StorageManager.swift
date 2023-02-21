@@ -29,21 +29,22 @@ final class StorageManager {
     
     private init() {}
     
-    func getFetchedResultsController(entityName: String, keyForSort: String) -> NSFetchedResultsController<NSFetchRequestResult> {
-        // Метод принимает два параметра: название сущности и параметр для сортировки записей. Это позволит определять по какому полю делать сортировку задач
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName) // запрос для выборки данных из базы
-        let sortDescriptor = NSSortDescriptor(key: keyForSort, ascending: true) // объект NSSortDescriptor с параметрами, используемыми для сортировки данных
+    func fetchedResultsController(entityName: String, keysForSort: [String]) -> NSFetchedResultsController<NSFetchRequestResult> {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        var sortDescriptors: [NSSortDescriptor] = []
+        keysForSort.forEach { keyForSort in
+            let sortDescriptor = NSSortDescriptor(key: keyForSort, ascending: true)
+            sortDescriptors.append(sortDescriptor)
+        }
+        fetchRequest.sortDescriptors = sortDescriptors
         
-        fetchRequest.sortDescriptors = [sortDescriptor] // объект NSSortDescriptor добавляется в массив
-        
-        let fetchResultsController = NSFetchedResultsController( // Создание экземпляра класса NSFetchedResultsController на основе, созданного ранее запроса и параметров сортировки
+        let fetchResultsController = NSFetchedResultsController(
             fetchRequest: fetchRequest,
             managedObjectContext: viewContext,
             sectionNameKeyPath: nil,
             cacheName: nil
         )
-            return fetchResultsController //функция возвращает созданный экземпляр
-        
+        return fetchResultsController
     }
     
     func saveTask(withTitle title: String, andPriority priority: Int16) { // Реализуем метод для создания и сохранения задачи в базе данных

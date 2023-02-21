@@ -10,9 +10,10 @@ import CoreData
 
 final class TaskListViewController: UITableViewController {
     
-    private var fetchedResultsController = StorageManager.shared.getFetchedResultsController(
+    private var fetchedResultsController = StorageManager.shared.fetchedResultsController(
         entityName: "Task",
-        keyForSort: "date")
+        keysForSort: ["date"]
+    )
 
     override func viewDidLoad() {
         super.viewDidLoad()
