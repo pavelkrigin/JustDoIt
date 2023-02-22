@@ -52,6 +52,7 @@ final class StorageManager {
         task.title = title
         task.priority = priority
         task.date = Date()
+        task.isComplete = false
         saveContext() // вызываем метод для внесения изменений в базу
     }
     
