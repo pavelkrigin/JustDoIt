@@ -67,6 +67,11 @@ final class StorageManager {
         saveContext()
     }
     
+    func done(task: Task) {
+        task.isComplete.toggle()
+        saveContext()
+    }
+    
     // MARK: - Core Data Saving support
     func saveContext() { // реализация метода для сохранения контекста
         if viewContext.hasChanges {
