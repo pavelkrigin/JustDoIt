@@ -72,7 +72,7 @@ extension TaskListViewController {
         }
         
         doneAction.image = UIImage(systemName: "checkmark")
-        doneAction.backgroundColor = #colorLiteral(red: <#Float#>, green: <#Float#>, blue: <#Float#>, alpha: <#Float#>)
+        doneAction.backgroundColor = .green
         
         return UISwipeActionsConfiguration(actions: [doneAction])
     }
@@ -102,6 +102,13 @@ extension TaskListViewController: NSFetchedResultsControllerDelegate {
         case .delete:
             guard let indexPath = indexPath else { return }
             tableView.deleteRows(at: [indexPath], with: .automatic)
+        case .move:
+            guard let indexPath = indexPath else { return }
+            guard let newIndexPath = newIndexPath else { return }
+            let cell = tableView.cellForRow(at: indexPath)
+            let task = getTask(at: newIndexPath)
+            cell?.contentConfiguration = setContentForCell(with: task)
+            tableView.moveRow(at: indexPath, to: newIndexPath)
         default: break
         }
     }
@@ -175,6 +182,12 @@ extension TaskListViewController {
         content.attributedText = strikeThrough(string: task?.title ?? "", task?.isComplete ?? false)
         
         return content
+    }
+    private func getTask(at indexPath: IndexPath?) -> Task? {
+        if let indexPath = indexPath {
+            return getFetchedResultsController.object(at: indexPath) as? Task
+        }
+        return nil
     }
     
 }
