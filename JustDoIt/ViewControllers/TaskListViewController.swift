@@ -63,6 +63,20 @@ extension TaskListViewController {
         return UISwipeActionsConfiguration(actions: [deleteAction]) // 5
     }
     
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let doneAction = UIContextualAction(style: .normal, title: "Done") { _, _, isDone in
+            if let task = self.getFetchedResultsController.object(at: indexPath) as? Task {
+                StorageManager.shared.done(task: task)
+            }
+            isDone(true)
+        }
+        
+        doneAction.image = UIImage(systemName: "checkmark")
+        doneAction.backgroundColor = #colorLiteral(red: <#Float#>, green: <#Float#>, blue: <#Float#>, alpha: <#Float#>)
+        
+        return UISwipeActionsConfiguration(actions: [doneAction])
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { //Метод вызывается каждый раз, когда пользователь тапает по строке табличного представления
         tableView.deselectRow(at: indexPath, animated: true) //Снимаем выделение со строки, после того как она будет выделена
         let task = getFetchedResultsController.object(at: indexPath) as? Task //Извлекаем экземпляр выбранной задачи из массива со списком всех задач по индексу выбранной строки
