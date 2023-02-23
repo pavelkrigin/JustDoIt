@@ -172,6 +172,7 @@ extension TaskListViewController {
         
         content.textProperties.color = .darkGray
         content.text = task?.title
+        content.attributedText = strikeThrough(string: task?.title ?? "", task?.isComplete ?? false)
         
         return content
     }
