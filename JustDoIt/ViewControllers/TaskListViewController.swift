@@ -142,6 +142,20 @@ extension TaskListViewController {
                         
     }
     
+    private func strikeThrough(string: String, _ isStrikeThrough: Bool) -> NSAttributedString {
+        isStrikeThrough
+        ? NSAttributedString(
+            string: string,
+            attributes: [
+                NSAttributedString.Key.strikethroughStyle : NSUnderlineStyle.double.rawValue
+            ]
+        )
+        : NSAttributedString(
+            string: string,
+            attributes: [NSAttributedString.Key.strikethroughStyle : 0]
+        )
+    }
+    
     private func fetchTasks() {
         do {
             try getFetchedResultsController.performFetch()
