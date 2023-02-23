@@ -10,15 +10,17 @@ import CoreData
 
 final class TaskListViewController: UITableViewController {
     
-    private var fetchedResultsController = StorageManager.shared.fetchedResultsController(
+    private var getFetchedResultsController = StorageManager.shared.fetchedResultsController(
         entityName: "Task",
-        keysForSort: ["date"]
+        keysForSort: ["isComplete", "date"]
     )
 
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchTasks()
-        fetchedResultsController.delegate = self
+        getFetchedResultsController.delegate = self
+        
+        
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -34,13 +36,13 @@ final class TaskListViewController: UITableViewController {
 // MARK: - Table View Data Source
 extension TaskListViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        fetchedResultsController.fetchedObjects?.count ?? 0
+        getFetchedResultsController.fetchedObjects?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        guard fetchedResultsController.object(at: indexPath) is Task else { return cell } // Вызов метода fetchedResultsController.object(at:) возвращает объект с типом NSManagedObject из массива fetchedResultsController.fetchedObjects, который мы затем приводим к типу Task с помощью оператора as?.
-        let task = fetchedResultsController.object(at: indexPath) as? Task
+        guard getFetchedResultsController.object(at: indexPath) is Task else { return cell } // Вызов метода fetchedResultsController.object(at:) возвращает объект с типом NSManagedObject из массива fetchedResultsController.fetchedObjects, который мы затем приводим к типу Task с помощью оператора as?.
+        let task = getFetchedResultsController.object(at: indexPath) as? Task
         cell.contentConfiguration = setContentForCell(with: task)
         
         return cell
@@ -51,7 +53,7 @@ extension TaskListViewController {
 extension TaskListViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, _ in // 1
-            if let task = self.fetchedResultsController.object(at: indexPath) as? Task { // 2
+            if let task = self.getFetchedResultsController.object(at: indexPath) as? Task { // 2
                 StorageManager.shared.delete(task: task) // 3
             }
         }
@@ -63,7 +65,7 @@ extension TaskListViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { //Метод вызывается каждый раз, когда пользователь тапает по строке табличного представления
         tableView.deselectRow(at: indexPath, animated: true) //Снимаем выделение со строки, после того как она будет выделена
-        let task = fetchedResultsController.object(at: indexPath) as? Task //Извлекаем экземпляр выбранной задачи из массива со списком всех задач по индексу выбранной строки
+        let task = getFetchedResultsController.object(at: indexPath) as? Task //Извлекаем экземпляр выбранной задачи из массива со списком всех задач по индексу выбранной строки
         performSegue(withIdentifier: "editTask", sender: task) //Вызываем метод performSegue, что бы инициировать переход по сегвею с идентификатором editTask и передаем в параметр sender выбранную задачу.
     }
 }
@@ -128,7 +130,7 @@ extension TaskListViewController {
     
     private func fetchTasks() {
         do {
-            try fetchedResultsController.performFetch()
+            try getFetchedResultsController.performFetch()
         } catch {
             print(error)
         }
