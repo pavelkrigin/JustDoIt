@@ -20,9 +20,8 @@ final class TaskListViewController: UITableViewController {
         fetchTasks()
         getFetchedResultsController.delegate = self
         
-        
-        
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editTask" { //Код будет выполнен только в том случае, если переход осуществляется по сегвею editTask
             guard let newTaskVC = segue.destination as? NewTaskViewController else { return } //Создаем экземпляр класса NewTaskViewController
